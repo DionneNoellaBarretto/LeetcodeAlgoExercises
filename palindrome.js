@@ -30,25 +30,14 @@ Constraints:
  
 
 Follow up: Could you solve it without converting the integer to a string? */
-
 var isPalindrome = function(x) {
-    var re = /[\W_]/g;
-    var lowRegStr = x.toLowerCase().replace(re, '');
-    var reverseStr = lowRegStr.split('').reverse().join(''); 
-    return reverseStr === lowRegStr;
+    if (x < 0) return false;
+    let n  = 0;
+    let x0 = x;
+    while (x) {
+        n *= 10;
+        n += (x % 10);
+        x  = Math.floor(x / 10);
+    }
+    return x0 == n;
 };
-
-// OR
-
-function palindrome(str) {
- var re = /[^A-Za-z0-9]/g;
- str = str.toLowerCase().replace(re, '');
- var len = str.length;
- for (var i = 0; i < len/2; i++) {
-   if (str[i] !== str[len - 1 - i]) {
-       return false;
-   }
- }
- return true;
-}
-palindrome("A man, a plan, a canal. Panama");
